@@ -1,0 +1,23 @@
+{
+  "Dashboard": "ଡ୍ୟାସବୋର୍ଡ",
+  "e-Detection":"ଇ - ଚିହ୍ନଟ",
+  "Invalid Vehicle Details": "ଇନଭାଲିଡ଼ ଗାଡି ",
+  "Category-Wise Invalid Vehicle Details":"ବର୍ଗ ଅନୁସାରେ ଇନଭାଲିଡ଼ ଗାଡି ",
+  "Challan_History":"ଚାଲାନ ଇତିହାସ ",
+  "Please Select FromDate and ToDate ":" ଦୟାକରି ପ୍ରଥମେ ଆରମ୍ଭ ଏବଂ ଶେଷ ତାରିଖ ବାଛନ୍ତୁ | ",
+  "Select the Transaction Date and parameter type first !!":"ପ୍ରଥମେ କାରବାର ତାରିଖ ଏବଂ ପାରାମିଟର ପ୍ରକାର ଚୟନ କରନ୍ତୁ |",
+  "Please Select Date First":"ଦୟାକରି ପ୍ରଥମେ ତାରିଖ ଚୟନ କରନ୍ତୁ |",
+  "Choose From Date":" ଆରମ୍ଭ  ତାରିଖ ବାଛନ୍ତୁ",
+  "Choose To Date":"ଶେଷ ତାରିଖ ବାଛନ୍ତୁ",
+  "Department User":"ବିଭାଗ ଉପଭୋକ୍ତା ",
+  "Language": "Ù„ØºØ©",
+  "English": "Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ",
+  "French": "Ù�Ø±Ù†Ø³ÙŠ",
+  "Urdu": "Ø§Ù„Ø£Ø±Ø¯ÙŠØ©",
+  "Spanish": "Ø§Ù„Ø£Ø³Ø¨Ø§Ù†ÙŠØ©",
+  "Italian": "Ø¥ÙŠØ·Ø§Ù„ÙŠ",
+  "Farsi": "Ø§Ù„Ù�Ø§Ø±Ø³ÙŠØ©",
+  "German": "Ø§Ù„Ù…Ø§Ù†ÙŠ",
+  "Simplified Chinese": "Ø§Ù„ØµÙŠÙ†ÙŠØ© Ø§Ù„Ù…Ø¨Ø³Ø·Ø©"
+
+}
