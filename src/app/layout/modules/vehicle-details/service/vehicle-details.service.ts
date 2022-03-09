@@ -6,6 +6,7 @@ import { CommonService } from 'src/app/common/common.service';
 	providedIn: 'root'
 })
 export class VehicleDetailsService {
+	
 	baseUrl = this.commonService.getBaseUrl();
 	constructor(private http: HttpClient, private commonService: CommonService) { }
 
@@ -21,6 +22,9 @@ export class VehicleDetailsService {
 	}
 	getVehicleDetailsByDate(date: string){
 		return this.http.post(`${this.baseUrl}/vehicle-details-by-date`,date)
+	}
+	getInvalidVehicleListByDateAndType(type: any, date: string) {
+		return this.http.post(`${this.baseUrl}/vehicle-details-by-date-type`,{offenseType:type,tDate:date})
 	}
 	
 }

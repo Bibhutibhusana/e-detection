@@ -1,1 +1,133 @@
-<router-outlet></router-outlet>
+
+
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #drawer [ngClass]="toggle?'sidenav':'sidenav-toggled'"
+    fixedInViewport [attr.role]="(isHandset$
+    | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' :
+    'side'" [opened]="(isHandset$ |
+    async) === false" class="text-white" style="background-image:
+    linear-gradient(to top, rgb(152, 216, 250) , rgb(30,144,255,0.9));">
+    <mat-toolbar fxLayoutAlign="space-between center" class="navbar
+      navbar-expand justify-content-between p-3 text-light"
+      style="background-color:dodgerblue;">
+
+      <img *ngIf="!toggle"  height="60" width = "60" src ="assets/images/car-inspection.svg"><label class="h1" *ngIf="toggle">{{"e-Detection" | translate}}</label>
+
+      <!-- <button style="margin-left:50px;" cDetectionlass="ml-5" type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button> -->
+
+    </mat-toolbar>
+
+    <div class="nav flex-column nav-pills text-center pt-2"
+      style="font-size:18px;" role="tablist"
+      aria-orientation="vertical">
+      <a *ngIf="user.role == 'EDUser'" class="nav-link text-white border
+        border-dark m-1" id="v-pills-home-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-home" aria-selected="true"
+        routerLink="/dashboard/vehicle-details/"><i class="fas fa-shuttle-van"></i>&nbsp;&nbsp;
+        <label *ngIf="toggle">{{"Invalid
+          Vehicle Details"
+          | translate}}</label></a>
+      <mat-divider></mat-divider>
+      <a *ngIf="user.role == 'EDUser'" class="nav-link text-white border
+        border-dark m-1" id="v-pills-profile-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-profile" aria-selected="false"
+        routerLink="/dashboard/vehicle-details/invalid-vehicles/">
+        <i class="fas fa-car"></i>&nbsp;&nbsp;
+        <label
+          *ngIf="toggle">{{"Category-Wise
+          Invalid Vehicle Details"
+          | translate}}</label></a>
+      <mat-divider></mat-divider>
+      <a *ngIf="user.role == 'EDUser'" class="nav-link text-white border
+        border-dark m-1" id="v-pills-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-messages" aria-selected="false"
+        routerLink="/dashboard/echallan/"><i class="fas fa-history"></i>&nbsp;&nbsp;<label
+          *ngIf="toggle">{{"Challan_History"
+          |
+          translate}}</label></a>
+
+      <a *ngIf="user.role == 'TollUser'" class="nav-link text-white border
+        border-dark m-1" id="v-pills-messages-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-messages" aria-selected="false"
+        routerLink="/dashboard/department-user">
+        <i class="fas fa-upload"></i>&nbsp;&nbsp;
+        <label *ngIf="toggle">{{"Upload
+          Data" | translate}}</label></a>
+
+      <a *ngIf="user.role == 'EDUser'" class="nav-link text-white border
+        border-dark m-1" id="v-pills-messages-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-messages" aria-selected="false"
+        routerLink="/dashboard/echallan/issued-challan-list">
+        <i class="fas fa-receipt"></i>&nbsp;&nbsp;
+        <label *ngIf="toggle">{{"Issued Challan
+          List" | translate}}</label></a>
+      <a *ngIf="user.role == 'EDUser'" class="nav-link text-white border
+        border-dark m-1" id="v-pills-messages-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-messages" aria-selected="false"
+        routerLink="/dashboard/vehicle-details/vehicle-class-comparision">
+        <i class="fas fa-bus"></i>&nbsp;&nbsp;
+        <label *ngIf="toggle">{{" Vehicle Class Comparision" | translate}}</label></a>
+
+      <a (click)="onToggle()" class="nav-link text-dark border border-dark m-1
+        toggle-btn" id="v-pills-messages-tab" data-toggle="pill"
+        role="tab" aria-controls="v-pills-messages" aria-selected="false"><i
+          class="fas fa-angle-double-left" *ngIf="toggle"></i> <i
+          *ngIf="!toggle" class="fas
+          fa-angle-double-right"></i>&nbsp;&nbsp;<label *ngIf="toggle">
+          {{"Collapse SideBar"
+          |
+          translate}}
+        </label></a>
+
+    </div>
+
+  </mat-sidenav>
+
+
+  <mat-sidenav-content style="margin-right:0px;">
+    <mat-toolbar class="text-white head sticky-top navbar" style="position:
+      fixed;background-color:dodgerblue;">
+      <div class="col-md-2">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="!drawer.opened">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        &nbsp;
+        <label *ngIf="!drawer.opened" style="font-family:sans-serif;"
+          class="h1">{{"e-Detection" |
+          translate}}</label>
+
+        <!-- <button (click) ="toggleBtn()" [ngClass]="toggle?'hide':'show'">{{btnName}}</button> -->
+      </div>
+      <div class="col-md-10 d-flex justify-content-end mr-3"
+        style="padding-right:10px;">
+
+        <button mat-raised-button class="btn"
+          [ngStyle]="{'background-color':'white','color':'black'}"
+          (click)="changeLang()"><i class="fas fa-language"></i>&nbsp;&nbsp;English/ଓଡିଆ</button>&nbsp;
+        <!--(click) ="openSignup()"
+          (click) ="openLogin()" -->
+        <button mat-raised-button class="btn btn-sm btn-danger"
+          *ngIf="loginService.getLoggedIn()"
+          (click)="onLogout()">
+          <label style="font-size:18px;"><a>Logout</a></label>
+        </button>
+
+      </div>
+    </mat-toolbar>
+
+    <div class="content" style="height:inherit;">
+      <router-outlet>
+
+      </router-outlet>
+
+    </div>
+    <!--<app-footer></app-footer>-->
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

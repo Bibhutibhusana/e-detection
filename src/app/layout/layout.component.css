@@ -1,0 +1,89 @@
+.hide{
+  background-color: red;
+  color:black;
+}
+.show{
+  background-color:green;
+  color: white;
+}
+
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+.sidenav-toggled{
+  width:100px !important;
+}
+
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a:active {
+  background-color: rgb(49, 119, 117);
+}
+
+.vertical-menu a:target {
+background-color: rgb(0, 97, 193);
+}
+.nav a:hover{
+  background-color:rgb(0, 97, 193);
+}
+a:visited{
+	background-color:rgb(0, 97, 193) !important;
+}
+
+::ng-deep mat-toolbar{
+
+	right:0;
+}
+.content{
+margin-top:60px !important;
+
+}
+/*#busy
+{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1000;
+    height: 10%;
+    width: 10%;
+}*/
+#busy{
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: fixed;
+  z-index: 2;
+  height:100%;
+  width:100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.spinner{
+	height:5%;
+	width: 5%;
+	top: 40%;
+	left: 30%;
+}
+.toggle-btn{
+  bottom: 0;
+  position: absolute;
+  width: -moz-available;
+
+}

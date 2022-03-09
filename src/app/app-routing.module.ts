@@ -7,9 +7,8 @@ const routes: Routes = [
 	{path:'login', loadChildren : () =>import ('./login/login.module').then((m) => m.LoginModule)},
   {path:'signup', loadChildren : () =>import ('./signup/signup.module').then((m) => m.SignupModule)},
   {path: 'practice',component: PracticeFieldComponent},
-  {path:'dashboard', loadChildren : () =>import ('./layout/layout.module').then((m) => m.LayoutModule)},
-  //, canActivate: [AuthGuard]
-  {path:'**', redirectTo:'dashboard/vehicle-details/invalid-vehicles',pathMatch:"full"}
+  {path:'dashboard', loadChildren : () =>import ('./layout/layout.module').then((m) => m.LayoutModule),canActivate: [AuthGuard]},
+  {path:'**', redirectTo:'login',pathMatch:"full"}
 ];
 
 @NgModule({

@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="login-page ">
+	<mat-card class="shadow-lg">
+		<div class="card " [ngStyle]="{'background': 'linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),
+                url(./assets/images/govt-of-odisha.jpg) center center / cover no-repeat '}">
+			<div class="header  mt-3">
+				<h1 class="display-1">{{'e-Detection' | translate}}</h1>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="d-block">
+				<mat-form-field appearance="outline" class="d-block">
+					<mat-label style="font-weight: 500;">UserName</mat-label>
+					<input matInput type="email" placeholder="username" [formControl]="username" required>
+					<mat-icon matSuffix> person_pin</mat-icon>
+				</mat-form-field>
+			</div>
+			<div class="d-block ">
+				<mat-form-field appearance="outline" class="d-block">
+					<mat-label style="font-weight: 500;">Password</mat-label>
+					<input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [formControl]="password"
+						required (keyup.enter)="onSubmit()" >
+					<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+						[attr.aria-pressed]="hide">
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+				</mat-form-field>
+			</div>
+			<div class="d-block">
+				<button mat-raised-button type="submit" class="btn btn-success d-block btn-lg p-3"
+					style="font-weight: 500; bottom:10px;" (click)="onSubmit()">
+					<h3>Submit
+					</h3>
+<!--					<i class="fa fa-user-circle-o"></i>-->
+				</button>
+			</div>
+		</div>
+	</mat-card>
+</div>
+
+<!--
+<div class="container border border-dark p-5">
+	<form>
+		<mat-form-field appearance="outline">
+			<label for="exampleInputEmail1">UserName</label>
+			<input matInput type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+				placeholder="username" [formControl]="username">
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<label for="exampleInputPassword1">Password</label>
+			<input matInput type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+				[formControl]="password">
+		</mat-form-field>
+		<button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+	</form>
+</div>-->

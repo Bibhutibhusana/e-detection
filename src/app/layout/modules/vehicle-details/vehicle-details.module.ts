@@ -5,19 +5,25 @@ import { InvalidVehiclesDetailsComponent } from './invalid-vehicles-details/inva
 import { VehicleDetailsRouting } from './vehicle-details-routing.module';
 import { MaterialModule } from '../../../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { PageHeaderModule } from 'src/app/shared/page-header/page-header.module';
+import { VehicleClassComparisionComponent } from './vehicle-class-comparision/vehicle-class-comparision.component';
 
 
 
 @NgModule({
   declarations: [
     VehicleDetailsListComponent,
-    InvalidVehiclesDetailsComponent
+    InvalidVehiclesDetailsComponent,
+    VehicleClassComparisionComponent
   ],
   imports: [
     CommonModule,
     VehicleDetailsRouting,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule,
+    PageHeaderModule
   ],
   exports:[
 	VehicleDetailsListComponent,

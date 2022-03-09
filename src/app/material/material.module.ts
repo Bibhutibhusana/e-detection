@@ -29,6 +29,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const MaterialComponent = [
   MatButtonModule,
@@ -63,6 +64,7 @@ const MaterialComponent = [
   MatTreeModule,
   MatPaginatorModule,
   MatSelectModule,
+  MatTableExporterModule
 ]
 
 @NgModule({

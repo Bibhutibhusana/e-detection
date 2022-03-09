@@ -1,2 +1,11 @@
+<mat-progress-bar *ngIf="loaderService.isLoading | async" mode="indeterminate"></mat-progress-bar>
+
 <router-outlet></router-outlet>
 <app-alert></app-alert>
+<div  *ngIf="loaderService.isLoading | async" class="mx-auto my-auto loader px-auto py-auto" id="load">
+	<img src ="assets/images/loader.gif" alter="Loading..." height=155px width=155px class="image mx-auto my-auto border " style="border-radius:10px;">
+	
+</div >
+<!--<div class="loader mx-auto my-auto" *ngIf="loaderService.isLoading | async" id="busy">
+					<mat-spinner mode="indeterminate" class="spinner mx-auto my-auto"></mat-spinner>
+				</div>-->

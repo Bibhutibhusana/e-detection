@@ -1,4 +1,6 @@
-export class VehicleDetails{
+import { BaseEntity } from "src/app/layout/models/base-entity";
+
+export class VehicleDetails extends BaseEntity{
 	id!: number;
 vehicleNo!: string;
 transactionDate: Date = new Date();
@@ -8,4 +10,4 @@ taxUpto!: Date;
 fitUpto!: Date;
 insUpto!: Date;
 nonUseStat!: string;	
-}
+} 

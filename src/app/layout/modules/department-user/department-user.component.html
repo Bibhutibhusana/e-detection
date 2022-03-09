@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body">
+    <app-page-header [heading]="'Upload Data'" [mainhead]="'Department User'"
+      [mainheadLink]="'/dashboard/department-user'" [icon]="' fas fa-upload'"
+      [mainIcon]="'fa-user-circle-o'">
+    </app-page-header>
+    <div class="row mx-auto text-center">
+      <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+        <div class="row p-5">
+          <div class="col">
+            <label for="patient-consent" class="select-file border border-dark
+              btn btn-primary">
+              <i class="fa fa-plus-circle"></i>&nbsp;&nbsp;{{'select File' | translate}}
+            </label>&nbsp;
+            <label>{{uploadForm.get('file')!.value.name}}</label>
+            <input type="file" (change)="onFileSelect($event)" multiple
+              accept=".xlxs,.csv,.jpg,.jpeg,.png"
+              class="d-none" name="uploadpc" id="patient-consent">
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-success select-file"
+              mat-raised-button><i
+                class="fa fas fa-upload"></i>&nbsp;&nbsp;{{'Upload' | translate}}</button>
+          </div>
+        </div>
+      </form>
+
+      &nbsp;
+      <mat-divider></mat-divider>
+
+      <!--<label for="patient-consent" class="border  border-dark btn btn-primary">
+					<i class="fa fas fa-upload"></i> &nbsp;Upload Data
+				</label>
+				<input type="file" (change)="selectFile($event)" multiple accept=".xlxs,.csv,.jpg,.jpeg,.png"
+
+					class="d-none" name="uploadpc" id="patient-consent">-->
+      <div class="row">
+        <div class="col ">
+          <button class="btn btn-success w-100" mat-raised-button
+            (click)="viewUploadedFiles()">{{'View Uploaded Files' | translate}}</button>
+        </div>
+        </div>
+        <div class="row">
+
+        <div class="col">
+          <div class="list-group table-stripped">
+            <button type="button" class="list-group-item list-group-item-dark
+              btn btn-primary"
+              *ngFor="let file of fileInfoList"
+              (click)="viewFileByUrl(file.url)">
+              {{file.name}}&nbsp;
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>

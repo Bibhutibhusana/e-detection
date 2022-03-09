@@ -1,30 +1,34 @@
 <div class="card">
-	<div class="card-head">
 
-	</div>
-	<div class="card-body">
-		<div class="row">
-			<div class="col-md-3">
-				<mat-form-field appearance="fill">
-					<mat-label>Choose a Date</mat-label>
-					<input matInput [matDatepicker]="picker" (ngModelChange)="showDate($event)" [(ngModel)]="date"
-						#inputPicker="ngModel">
-					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-					<mat-datepicker #picker></mat-datepicker>
-				</mat-form-field>
-			</div>
-			<div class="col-md-3">
-				<mat-form-field appearance="fill">
-					<mat-label>Choose Type</mat-label>
-					<mat-select name="type" [(ngModel)]="type" (ngModelChange)="selectType($event)" #checkType>
-						<mat-option *ngFor="let item of items" [value]="item.value">
-							{{item.name}}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
+  <div class="card-body">
+    <app-page-header [heading]="'Category-wise Report'" [mainhead]="'Default
+      Vehicles'"
+      [mainheadLink]="'/dashboard/vehicle-details'" [icon]="' fa-bars'"
+      [mainIcon]="'fa-car'"></app-page-header>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose Transaction Date</mat-label>
+          <input matInput [matDatepicker]="picker"
+            (ngModelChange)="showDate($event)" [(ngModel)]="date"
+            #inputPicker="ngModel" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose Type</mat-label>
+          <mat-select name="type" [(ngModel)]="type"
+            (ngModelChange)="selectType($event)" #checkType>
+            <mat-option *ngFor="let item of items" [value]="item.value">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-			</div>
-			<div class="col-md-3">
+      </div>
+      <!--<div class="col-md-3">
 				<button mat-raised-button class="p-2" *ngIf="isSearch" (click)="showView()">Hide Vehicle
 					Details</button>
 				<button mat-raised-button class="p-2" *ngIf="!isSearch" (click)="showView()"
@@ -32,98 +36,100 @@
 
 
 			</div>
-			<div class="col-md-3">
-				<mat-form-field appearance="fill">
-					<mat-label>Filter</mat-label>
-					<input matInput (keyup)="doFilter($any($event))" placeholder="Ex. ium" #input>
-				</mat-form-field> &nbsp;
+      <div class="col-md-3">
+        <button mat-raised-button color="accent" class="p-3 w-100"
+          (click)="issueAllChallan()"><h3>Issue-Challan</h3></button>
+      </div>-->
+    </div>
 
-				<button mat-raised-button color="accent" class="p-1">Issue-Challan</button>
+  </div>
+  <div class="card-body" *ngIf="isSearch">
 
-			</div>
+    <div class="col-md-10">
+      <h3> Invalid Vehicles List for Transaction Date : {{date | date:
+        'mediumDate'}}</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Search Vehicle No.</mat-label>
+        <input matInput (keyup)="doFilter($any($event))" placeholder="Ex. ium"
+          #input>
+      </mat-form-field> &nbsp;
 
-		</div>
 
-	</div>
-	<div class="card-body" *ngIf="isSearch">
-		<h3> Invalid Vehicles List for Transaction Date : {{date | date: 'mediumDate'}}</h3>
+    </div>
 
-		<table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirect="asc"
-			class="table table-bordered  table-striped table-condensed table-responsive">
-			<ng-container matColumnDef="id">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Seq.Id. </th>
-				<td mat-cell *matCellDef="let element; let i= index"> {{i+1}} </td>
-			</ng-container>
-			<ng-container matColumnDef="vehicleNo">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header>VehicleNo. </th>
-				<td mat-cell *matCellDef="let element"> {{element.vehicleNo}} </td>
-			</ng-container>
-			<ng-container matColumnDef="vtClass">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Vt_Class </th>
-				<td mat-cell *matCellDef="let element"> {{element.vtClass}} </td>
-			</ng-container>
-			<ng-container matColumnDef="vhClass">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Vh_Class. </th>
-				<td mat-cell *matCellDef="let element"> {{element.vhClass}} </td>
-			</ng-container>
-			<ng-container matColumnDef="tax_upto" *ngIf="type=='tax_upto'">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Tax Upto </th>
-				<td mat-cell *matCellDef="let element">
-					<p *ngIf="element.transactionDate == null" style="color:red;"> {{element.taxUpto|
-						date:'dd-MM-yyyy'}}</p>
-					<p *ngIf="element.transactionDate >element.taxUpto" style="color:red;"> {{element.taxUpto|
-						date:'dd-MM-yyyy'}}</p>
-					<p *ngIf="element.transactionDate < element.taxUpto">{{element.taxUpto | date:'dd-MM-yyyy'}}</p>
-				</td>
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="id"
+      matSortDirect="asc" class="table table-bordered table-striped
+      table-condensed
+      table-responsive">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Seq.Id. </th>
+        <td mat-cell *matCellDef="let element; let i= index"> {{i+1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="vehicleNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>VehicleNo. </th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicleNo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="vtClass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vt_Class </th>
+        <td mat-cell *matCellDef="let element"> {{element.vtClass}} </td>
+      </ng-container>
+      <ng-container matColumnDef="vhClass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vh_Class. </th>
+        <td mat-cell *matCellDef="let element"> {{element.vhClass}} </td>
+      </ng-container>
+      <ng-container matColumnDef="tax_upto" *ngIf="type=='tax_upto'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tax Upto </th>
+        <td mat-cell *matCellDef="let element">
+          <p style="color:red;">
+            {{element.taxUpto|
+            date:'dd-MM-yyyy'}}</p>
+        </td>
 
-			</ng-container>
-			<ng-container matColumnDef="fit_upto" *ngIf="type=='fit_upto'">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Fit Upto </th>
-				<td mat-cell *matCellDef="let element">
-					<p *ngIf="element.transactionDate == null" style="color:red;"> {{element.fitUpto|
-						date:'dd-MM-yyyy'}}</p>
-					<p *ngIf="element.transactionDate >element.fitUpto" style="color:red;"> {{element.fitUpto|
-						date:'dd-MM-yyyy'}}</p>
-					<p *ngIf="element.transactionDate < element.fitUpto">{{element.fitUpto | date:'dd-MM-yyyy'}} </p>
-				</td>
-			</ng-container>
-			<ng-container matColumnDef="ins_upto" *ngIf="type=='ins_upto'">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Insurance Upto. </th>
-				<td mat-cell *matCellDef="let element">
-					<p *ngIf="element.transactionDate == null" style="color:red;"> {{element.insUpto|
-						date:'dd-MM-yyyy'}}</p>
-					<p *ngIf="element.transactionDate >element.insUpto" style="color:red;"> {{element.insUpto|
-						date:'dd-MM-yyyy'}}</p>
-					<p *ngIf="element.transactionDate < element.insUpto">{{element.insUpto | date:'dd-MM-yyyy'}} </p>
-				</td>
-			</ng-container>
-			<ng-container matColumnDef="nonusestat" *ngIf="type=='nonusestat'">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Non-Use Status </th>
-				<td mat-cell *matCellDef="let element">
-					<p *ngIf="element.nonUseStat == null" style="color:red;">{{element.nonUseStat}}</p>
-					<p *ngIf="element.nonUseStat == 'Nonuse' " style="color:red;">{{element.nonUseStat}}</p>
-					<p *ngIf="element.nonUseStat == 'No-Nonuse'" style="color:black;">{{element.nonUseStat}}</p>
-				</td>
-			</ng-container>
-			<ng-container matColumnDef="action">
-				<th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-				<td mat-cell *matCellDef="let element">
-					<input type="checkbox">
-				</td>
-			</ng-container>
-			<tr mat-header-row class="mat-head" *matHeaderRowDef="displayedColumns;"></tr>
-			<tr mat-row *matRowDef="let row; columns: displayedColumns;" style="background-color: #ffffff;"> padding: 0;
-				margin: 0; max-height: 10px;"></tr>
-			<tr mat-row *matNoDataRow>
-				<td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-			</tr>
-		</table>
-		
-	</div>
-	<div class="card-body" *ngIf="!isSearch">
-		<h3 style="color:red;">Select the date and type first</h3>
-	</div>
-	<div [ngStyle]="{'display':isSearch == true ? 'block' : 'none' }">
-			<mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-		</div>
+      </ng-container>
+      <ng-container matColumnDef="fit_upto" *ngIf="type=='fit_upto'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fit Upto </th>
+        <td mat-cell *matCellDef="let element">
+          <p style="color:red;">
+            {{element.fitUpto|
+            date:'dd-MM-yyyy'}}</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="ins_upto" *ngIf="type=='ins_upto'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Insurance Upto.
+        </th>
+        <td mat-cell *matCellDef="let element">
+
+          <p style="color:red;">
+            {{element.insUpto|
+            date:'dd-MM-yyyy'}}</p>
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="nonusestat" *ngIf="type=='nonusestat'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Non-Use Status
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <p style="color:red;">{{element.nonUseStat}}</p>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row class="mat-head" *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        style="background-color: #ffffff;"> padding: 0;
+        margin: 0; max-height: 10px;"></tr>
+      <tr mat-row *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter
+          "{{input.value}}"</td>
+      </tr>
+    </table>
+
+  </div>
+  <div class="card-body" *ngIf="!isSearch">
+    <h3 style="color:red;">{{"Select the Transaction Date and parameter type
+      first !!" | translate}}</h3>
+  </div>
+  <div [ngStyle]="{'display':isSearch == true ? 'block' : 'none' }">
+    <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of
+      users"></mat-paginator>
+  </div>
 </div>
